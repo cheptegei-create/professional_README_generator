@@ -22,7 +22,7 @@ Then a high-quality, professional README.md is generated with the title of my pr
 
 
     
-![alt text](assets/images/screenshot.png)
+![alt text](demo.gif)
     
 
 ## Credits

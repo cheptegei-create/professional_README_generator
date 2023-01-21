@@ -100,7 +100,7 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-  fs.writeFile(fileName, JSON.stringify(data, null, "\t"), (err) =>
+  fs.writeFile(fileName, data, (err) =>
     err ? console.log(err) : console.log("Success! Your Readme file is set!!")
   );
 }
