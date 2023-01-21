@@ -1,13 +1,8 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
 let licenseBadge = ``;
 let licenseSection = ``;
-let tableCont = `## Table of Contents`;
-let installSect = ``;
-let usageSect = ``;
-let contSect = ``;
-let testSect = ``;
-let emailDev = ``;
+
+// A function that returns a license badge based on which license is passed in
+// If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (license) {
     return (licenseBadge += `![Badge for GitHub repo license](https://img.shields.io/github/license/${userResponses.license}/${userResponses.repo}?style=flat&logo=appveyor)`);
@@ -16,7 +11,7 @@ function renderLicenseBadge(license) {
   }
 }
 
-// TODO: Create a function that returns the license link
+// A function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license) {
@@ -26,10 +21,11 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
+// A function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (license) {
+    renderLicenseLink();
     return (licenseSection += `[License information: ](https://choosealicense.com/licenses/${userResponses.license}/#)`);
   } else {
     return "";
@@ -37,37 +33,71 @@ function renderLicenseSection(license) {
 }
 
 //Function to create the Table of Content
-function generateToc(userResponses) {
+/* function generateToc(userResponses) {
+  
+} */
+
+/* //Optional function for the installation section
+function howToInstall(userResponses) {
+ 
+} */
+
+//Optional function for the usage section
+/* function howToUse(userResponses) {
+  
+}
+ */
+//Optional function for the usage section
+/* function contributors(userResponses) {
+  
+} */
+
+//Optional function for the usage section
+/* function tests(userResponses) {
+   
+  
+} */
+
+/* function disEmail(userInfo) {
+  
+ 
+} */
+// A function to generate markdown for README
+function generateMarkdown(userResponses, userInfo) {
+  let tableCont = `## Table of Contents`;
+  let installSect = ``;
+  let usageSect = ``;
+  let contSect = ``;
+  let testSect = ``;
+  let emailDev = ``;
+
   if (userResponses.installation !== "") {
     tableCont += `
   * [Installation](#installation)`;
-  }
+  };
 
   if (userResponses.usage !== "") {
     tableCont += `
   * [Usage](#usage)`;
-  }
+  };
 
   if (userResponses.contributing !== "") {
     tableCont += `
   * [Contributing](#contributing)`;
-  }
+  };
 
   if (userResponses.tests !== "") {
     tableCont += `
   * [Tests](#tests)`;
-  }
+  };
 
   if (userResponses.license !== "") {
     tableCont += `
   * [License](#license)`;
-  }
-}
+  };
 
-//Optional function for the installation section
-function howToInstall(userResponses) {
-  // Optional Installation section
-  if (userResponses.installation !== "") {
+   // Optional Installation section
+   if (userResponses.installation !== "") {
     installSect += `
     
     ## Installation
@@ -75,11 +105,8 @@ function howToInstall(userResponses) {
     *Steps required to install project and how to get the development environment running:*
     
     ${userResponses.installation}`;
-  }
-}
+  };
 
-//Optional function for the usage section
-function howToUse(userResponses) {
   // Optional Usage section
   if (userResponses.usage !== "") {
     usageSect += `
@@ -89,11 +116,8 @@ function howToUse(userResponses) {
   *Instructions and examples for use:*
   
   ${userResponses.usage}`;
-  }
-}
+  };
 
-//Optional function for the usage section
-function contributors(userResponses) {
   // Optional Contributing section
   if (userResponses.contributing !== '') {
 
@@ -107,11 +131,8 @@ function contributors(userResponses) {
     
     ${userResponses.contributing}`
     };
-}
 
-//Optional function for the usage section
-function tests(userResponses) {
-   // Optional Tests section
+    // Optional Tests section
    if (userResponses.tests !== '') {
   
     testSect +=
@@ -123,46 +144,37 @@ function tests(userResponses) {
     
     ${userResponses.tests}`
     };
-  
-}
 
-function disEmail(userInfo) {
-  // If GitHub email is not null, add to Developer section
+    // If GitHub email is not null, add to Developer section
   if (userInfo.email !== null) {
   
     emailDev +=
     `
     Email: ${userInfo.email}
     `};
- 
-}
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  renderLicenseBadge();
-  renderLicenseLink();
-  renderLicenseSection();
-  generateToc();
-  howToInstall();
-  howToUse();
-  contributors();
-  tests();
-  disEmail();
 
-  return `# ${data.title}
+  return `# ${userResponses.title}
 
-  ${licenseBadge}
+  ${ renderLicenseBadge()}
   
   ## Description 
   
   *The what, why, and how:* 
 
-  ${data.description}
+  ${userResponses.description}
 
   ${tableCont}
+ 
 
   ${installSect}
 
-  ${licenseSection}
+  ${usageSect}
+
+  ${contSect}
+
+  ${testSect}
+
+  ${renderLicenseSection()}
 
   ## Questions?
   <img src="${userInfo.avatar_url}" alt="${userInfo.login}" width="40%" />
