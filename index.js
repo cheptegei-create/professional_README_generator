@@ -25,7 +25,7 @@ const questions = [
     type: "input",
     message: "What is the name of your GitHub repo?",
     name: "repo",
-    default: "readme-generator",
+    default: "professional_README_generator",
     validate: function (answer) {
       if (answer.length < 1) {
         return console.log("A valid GitHub repo is required for a badge.");
@@ -117,12 +117,18 @@ async function init() {
       "Thank you for your responses! Fetching your GitHub data next..."
     );
 
+    //store license
+    const license = userResponses.license;
+
     //Call GitHub API
     const userInfo = await api.getUser(userResponses);
     console.log("Your GitHub user info: ", userInfo);
     //pass userInfo and userResponses to generateMarkdown
     console.log("Generate README file");
-    const markdown = generateMarkdown(userResponses, userInfo);
+    const markdown = generateMarkdown(userResponses, userInfo, license);
+   /*  const badge = renderLicenseBadge(userResponses, userInfo, license);
+    const link = renderLicenseLink(userResponses, userInfo, license);
+    const licenseSection = renderLicenseSection(userResponses, userInfo, license); */
     console.log(markdown);
 
     //write to file

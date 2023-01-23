@@ -1,8 +1,8 @@
 // A function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  if (license) {
-    return `![Badge for GitHub repo license](https://img.shields.io/github/license/${userResponses.license}/${userResponses.repo}?style=flat&logo=appveyor)`;
+  if (license === true) {
+    generateMarkdown.license;
   } else {
     return "";
   }
@@ -11,8 +11,8 @@ function renderLicenseBadge(license) {
 // A function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  if (license) {
-    return `## Licence \n check badge under the title!`;
+  if (license === true) {
+    generateMarkdown.license;
   } else {
     return "";
   }
@@ -21,15 +21,17 @@ function renderLicenseLink(license) {
 // A function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  if (license) {
-    return `[License information: ](https://choosealicense.com/licenses/${userResponses.license}/#)`;
+  
+  if (license === true) {
+    console.log('license i am here');
+    generateMarkdown.license;
   } else {
     return "";
   }
 }
 
 // A function to generate markdown for README
-function generateMarkdown(userResponses, userInfo) {
+function generateMarkdown(userResponses, userInfo, license) {
   let tableCont = `## Table of Contents`;
   let installSect = ``;
   let usageSect = ``;
@@ -114,9 +116,9 @@ function generateMarkdown(userResponses, userInfo) {
   }
 
   return `# ${userResponses.title}
-
-  ${renderLicenseBadge()}
   
+![GitHub](https://img.shields.io/github/license/${userResponses.username}/${userResponses.repo})
+
   ## Description 
    
 
@@ -127,8 +129,13 @@ function generateMarkdown(userResponses, userInfo) {
     ${usageSect} 
     ${contSect}
     ${testSect}
-    ${renderLicenseLink()}
-    ${renderLicenseSection()}
+
+  ## Licence 
+    
+  Check badge under the title!
+
+  ${userResponses.license}
+
     
   ## Questions?
   <img src="${userInfo.avatar_url}" alt="${userInfo.login}" width="40%" />

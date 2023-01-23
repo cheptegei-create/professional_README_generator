@@ -1,7 +1,7 @@
 # Project Title
+  
+![GitHub](https://img.shields.io/github/license/cheptegei-create/professional_README_generator)
 
-  
-  
   ## Description 
    
 
@@ -13,8 +13,13 @@
      
     
     
+
+  ## Licence 
     
-    
+  Check badge under the title!
+  MIT License
+  
+
     
   ## Questions?
   <img src="https://avatars.githubusercontent.com/u/62003975?v=4" alt="cheptegei-create" width="40%" />
